@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter adapter;
         final ArrayList<HashMap<String, String>> boo;
 
-        EditText book_name = (EditText) findViewById(R.id.et_book_name);
-        EditText author_name = (EditText) findViewById(R.id.et_author_name);
-        EditText total_page = (EditText) findViewById(R.id.et_total_page);
-        EditText start_date = (EditText) findViewById(R.id.et_start_date);
-        EditText finish_date = (EditText) findViewById(R.id.et_finish_date);
+        final EditText book_name = (EditText) findViewById(R.id.et_book_name);
+        final EditText author_name = (EditText) findViewById(R.id.et_author_name);
+        final EditText total_page = (EditText) findViewById(R.id.et_total_page);
+        final EditText start_date = (EditText) findViewById(R.id.et_start_date);
+        final EditText finish_date = (EditText) findViewById(R.id.et_finish_date);
         //total_page.setInputType(InputType.TYPE_CLASS_NUMBER);
         Button button_add = (Button) findViewById(R.id.button_add);
         Button button_delete = (Button) findViewById(R.id.button_delete);
@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //EditText'ten aldıklarımızı tanımlayalım
-        final String bookname = book_name.getText().toString();
-        final String authorname = author_name.getText().toString();
-        final String totalpage = total_page.getText().toString();
-        final String startdate = start_date.getText().toString();
-        final String finishdate = finish_date.getText().toString();
+
         //int totalpage_int = 0;
         //totalpage_int = Integer.valueOf(totalpage).intValue();
         //final int total_page_int = totalpage_int;
@@ -56,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Database book_db = new Database(getApplicationContext());
+                final String bookname = book_name.getText().toString();
+                final String authorname = author_name.getText().toString();
+                final String totalpage = total_page.getText().toString();
+                final String startdate = start_date.getText().toString();
+                final String finishdate = finish_date.getText().toString();
                 book_db.addBook(bookname, authorname, totalpage, startdate, finishdate);
                 tv1.setText(bookname);
             }
