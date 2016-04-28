@@ -21,43 +21,32 @@ public class Database extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     //TABLE
     private static String TABLE_NAME = "books";
-    private static String BOOK_ID = "book_id";
-    private static String BOOK_NAME = "book_name";
-    private static String AUTHOR_NAME = "author_name";
-    private static String TOTAL_PAGE = "total_page";
-    private static String START_DATE = "start_date";
-    private static String FINISH_DATE = "finish_date";
+    private static String BOOK_ID = "book_id ";
+    private static String BOOK_NAME = "book_name ";
+    private static String AUTHOR_NAME = "author_name ";
+    private static String TOTAL_PAGE = "total_page ";
+    private static String START_DATE = "start_date ";
+    private static String FINISH_DATE = "finish_date ";
     public static Object addBook;
 
-    public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DB_NAME, factory, DB_VERSION);
+    public Database(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     //CREATE TABLE
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
-                TABLE_NAME + "(" +
-                BOOK_ID + "INTEGER PRIMARY KEY AUTO INCREMENT," +
-                BOOK_NAME + "TEXT PRIMARY KEY," +
-                AUTHOR_NAME + "TEXT," +
-                TOTAL_PAGE + "INT," +
-                START_DATE + "DATE," +
-                FINISH_DATE + "DATE" + ")";
-        db.execSQL(CREATE_TABLE);
-    }
+
 
     //Kitap Ekleme Methodu
-    public void addBook(String book_name, String author_name, String total_page, String start_date, String finish_date) {
+    public void addBook(String bookname, String authorname, String totalpage, String startdate, String finishdate) {
         SQLiteDatabase book_db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(BOOK_NAME, book_name);
-        values.put(AUTHOR_NAME, author_name);
-        values.put(TOTAL_PAGE, total_page);
-        values.put(START_DATE, start_date);
-        values.put(FINISH_DATE, finish_date);
+        values.put(BOOK_NAME, bookname);
+        values.put(AUTHOR_NAME, authorname);
+        values.put(TOTAL_PAGE, totalpage);
+        values.put(START_DATE, startdate);
+        values.put(FINISH_DATE, finishdate);
         //Verileri insert ediyoruz
-        book_db.insert(TABLE_NAME, null, values);
+        book_db.insert(TABLE_NAME,null,values);
         //DB'yi kapatıyoruz
         book_db.close();
     }
@@ -113,12 +102,26 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @Override
+    public void onCreate(SQLiteDatabase db) {
+        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                TABLE_NAME + "(" +
+                BOOK_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                BOOK_NAME + "TEXT ," +
+                AUTHOR_NAME + "TEXT," +
+                TOTAL_PAGE + "TEXT," +
+                START_DATE + "DATE," +
+                FINISH_DATE + "DATE" + ")";
+        db.execSQL(CREATE_TABLE);
+    }
+
+
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 
-    public static void addBook(String bookname, String book_name) {
-    }
+
+
 }
 
 

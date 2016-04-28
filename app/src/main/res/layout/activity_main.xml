@@ -39,13 +39,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date I have started"
-        android:inputType="date"/>
+  />
     <EditText
         android:id="@+id/et_finish_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date I have finished"
-        android:inputType="date"/>
+/>
     <!-- Buttons-->
     <Button
         android:id="@+id/button_add"
