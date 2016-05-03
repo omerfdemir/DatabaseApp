@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ArrayAdapter adapter;
-        final ArrayList<HashMap<String, String>> boo;
+        final ArrayList<HashMap<String, String>> book;
 
         final EditText book_name = (EditText) findViewById(R.id.et_book_name);
         final EditText author_name = (EditText) findViewById(R.id.et_author_name);
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Button button_add = (Button) findViewById(R.id.button_add);
         Button button_delete = (Button) findViewById(R.id.button_delete);
         Button button_change = (Button) findViewById(R.id.button_change);
-        final TextView tv1 = (TextView) findViewById(R.id.tv1);
+
 
 
         //EditText'ten aldıklarımızı tanımlayalım
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 final String startdate = start_date.getText().toString();
                 final String finishdate = finish_date.getText().toString();
                 book_db.addBook(bookname, authorname, totalpage, startdate, finishdate);
-                tv1.setText(bookname);
+                Toast.makeText(getApplicationContext(),"Book has been added succesfully",Toast.LENGTH_LONG).show();
+
             }
         });
     }

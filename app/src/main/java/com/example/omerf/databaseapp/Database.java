@@ -21,12 +21,12 @@ public class Database extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     //TABLE
     private static String TABLE_NAME = "books";
-    private static String BOOK_ID = "book_id ";
-    private static String BOOK_NAME = "book_name ";
-    private static String AUTHOR_NAME = "author_name ";
-    private static String TOTAL_PAGE = "total_page ";
-    private static String START_DATE = "start_date ";
-    private static String FINISH_DATE = "finish_date ";
+    private static String BOOK_ID = "book_id";
+    private static String BOOK_NAME = "book_name";
+    private static String AUTHOR_NAME = "author_name";
+    private static String TOTAL_PAGE = "total_page";
+    private static String START_DATE = "start_date";
+    private static String FINISH_DATE = "finish_date";
     public static Object addBook;
 
     public Database(Context context) {
@@ -62,9 +62,9 @@ public class Database extends SQLiteOpenHelper {
     //Kitap ID si kullanarak kitapları göstermek için kullanılır
     public HashMap<String, String> bookDetails(int book_id) {
         HashMap<String, String> book = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_NAME + "WHERE book_id = " + book_id;
-        SQLiteDatabase book_db = getReadableDatabase();
-        Cursor cursor = book_db.rawQuery(selectQuery, null);
+        String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE book_id="+book_id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
         //Move the first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
@@ -74,8 +74,8 @@ public class Database extends SQLiteOpenHelper {
             book.put(START_DATE, cursor.getString(4));
             book.put(FINISH_DATE, cursor.getString(5));
         }
-        cursor.close();
-        book_db.close();
+            cursor.close();
+            db.close();
         return book;
     }
 

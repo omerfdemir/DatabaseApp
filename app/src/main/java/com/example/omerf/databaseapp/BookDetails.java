@@ -1,7 +1,98 @@
 package com.example.omerf.databaseapp;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+
 /**
  * Created by omerf on 28.04.2016.
  */
-public class BookDetails {
+public class BookDetails extends Activity{
+    int book_id;
+    Button button_change,button_delete;
+    TextView tv_book_name,tv_author_name,tv_total_page,tv_start_date,tv_finish_date;
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.book_details);
+
+        //ActionBar actionBar = getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setTitle("Book List");
+
+        //Buttonları tanımlıyoruz
+        Button button_add = (Button) findViewById(R.id.button_add);
+        Button button_delete = (Button) findViewById(R.id.button_delete);
+        Button button_change = (Button) findViewById(R.id.button_change);
+
+        //TextView'leri tanımlıyoruz
+        TextView tv_book_name = (TextView) findViewById(R.id.tv_book_name);
+        TextView tv_author_name = (TextView) findViewById(R.id.tv_author_name);
+        TextView tv_total_page = (TextView) findViewById(R.id.tv_total_page);
+        TextView tv_start_date = (TextView) findViewById(R.id.tv_start_date);
+        TextView tv_finish_date = (TextView) findViewById(R.id.tv_finish_date);
+
+        final Intent intent = getIntent();
+        book_id = intent.getIntExtra("book_id",0);
+
+        Database book_db = new Database(getApplicationContext());
+
+        HashMap<String,String> map = book_db.bookDetails(book_id);
+
+        tv_book_name.setText(map.get("book_name").toString());
+        tv_author_name.setText(map.get("author_name").toString());
+        tv_total_page.setText(map.get("total_page").toString());
+        tv_start_date.setText(map.get("start_date").toString());
+        tv_finish_date.setText(map.get("finish_date").toString());
+
+
+        //Değiştir butonuna basınca yeni intent çağırırız
+        button_change.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),EditBook.class);
+                intent.putExtra("book_id ",(int)book_id);
+                startActivity(intent);
+            }
+
+
+        });
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(BookDetails.this);
+                alertDialog.setTitle("Warning!");
+                alertDialog.setTitle("Do you want to delete the book?");
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Database book_db = new Database(getApplicationContext());
+                        book_db.deleteBook(book_id);
+                        Toast.makeText(getApplicationContext(),"Book has been deleted succesfully",Toast.LENGTH_LONG).show();
+                        startActivity(intent);// Kitabı silip ana sayfaya döndük
+                        finish();
+
+                    }
+                });
+                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDialog.show();
+            }
+        });
+    }
+
+
 }

@@ -24,6 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.omerf.databaseapp.MyLibrary"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.Light">
+
+        </activity>
+        <activity
+            android:name="com.example.omerf.databaseapp.BookDetails"
+            android:label="@string/app_name"
+            android:parentActivityName=".BookDetails"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.Light" >
+        </activity>
     </application>
 
 </manifest>
