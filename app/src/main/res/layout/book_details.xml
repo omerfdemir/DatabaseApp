@@ -11,13 +11,14 @@
             android:id="@+id/linearLayout">
             <TextView
                 android:id="@+id/tv_1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="Book's Name : "/>
             <TextView
                 android:id="@+id/tv_book_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="aa"/>
         </LinearLayout>
 
     <LinearLayout
@@ -26,12 +27,12 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Author"/>
         <TextView
             android:id="@+id/tv_author_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             />
     </LinearLayout>
@@ -41,12 +42,12 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Total Page : "/>
         <TextView
             android:id="@+id/tv_total_page"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             />
     </LinearLayout>
@@ -56,12 +57,12 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Date I have started : "/>
         <TextView
             android:id="@+id/tv_start_date"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             />
     </LinearLayout>
@@ -71,12 +72,12 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Date I have finished : "/>
         <TextView
             android:id="@+id/tv_finish_date"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             />
     </LinearLayout>
@@ -85,11 +86,6 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_add"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="ADD"
  />
     </LinearLayout>
 

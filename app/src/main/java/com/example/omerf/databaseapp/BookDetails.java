@@ -41,20 +41,28 @@ public class BookDetails extends Activity{
         TextView tv_start_date = (TextView) findViewById(R.id.tv_start_date);
         TextView tv_finish_date = (TextView) findViewById(R.id.tv_finish_date);
 
-        final Intent intent = getIntent();
-        book_id = intent.getIntExtra("book_id",0);
+
+        final Intent intent=getIntent();
+        book_id = intent.getIntExtra("book_id", 1);
 
         Database book_db = new Database(getApplicationContext());
 
         HashMap<String,String> map = book_db.bookDetails(book_id);
 
-        tv_book_name.setText(map.get("book_name").toString());
-        tv_author_name.setText(map.get("author_name").toString());
-        tv_total_page.setText(map.get("total_page").toString());
-        tv_start_date.setText(map.get("start_date").toString());
-        tv_finish_date.setText(map.get("finish_date").toString());
+        tv_book_name.setText(map.get("book_name"));
+        tv_author_name.setText(map.get("author_name"));
+        tv_total_page.setText(map.get("total_page"));
+        tv_start_date.setText(map.get("start_date"));
+        tv_finish_date.setText(map.get("finish_date"));
 
-
+        //Add butonunu sildim.
+      /**  button_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });*/
         //Değiştir butonuna basınca yeni intent çağırırız
         button_change.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -78,6 +86,7 @@ public class BookDetails extends Activity{
                         Database book_db = new Database(getApplicationContext());
                         book_db.deleteBook(book_id);
                         Toast.makeText(getApplicationContext(),"Book has been deleted succesfully",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),MyLibrary.class);
                         startActivity(intent);// Kitabı silip ana sayfaya döndük
                         finish();
 

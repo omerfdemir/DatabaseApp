@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,9 +63,10 @@ public class Database extends SQLiteOpenHelper {
     //Kitap ID si kullanarak kitapları göstermek için kullanılır
     public HashMap<String, String> bookDetails(int book_id) {
         HashMap<String, String> book = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE book_id="+book_id;
+        String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE book_id = " + book_id;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
+        Log.d("LOG", selectQuery);
         //Move the first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
@@ -73,11 +75,17 @@ public class Database extends SQLiteOpenHelper {
             book.put(TOTAL_PAGE, cursor.getString(3));
             book.put(START_DATE, cursor.getString(4));
             book.put(FINISH_DATE, cursor.getString(5));
+            Log.e("String",cursor.getString(2));
         }
             cursor.close();
+
             db.close();
         return book;
+
     }
+
+
+
 
     //Tüm kitapları göstermek için kullanılır
     public ArrayList<HashMap<String, String>> allBooks() {

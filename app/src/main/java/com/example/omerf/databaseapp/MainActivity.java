@@ -1,5 +1,6 @@
 package com.example.omerf.databaseapp;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 final String finishdate = finish_date.getText().toString();
                 book_db.addBook(bookname, authorname, totalpage, startdate, finishdate);
                 Toast.makeText(getApplicationContext(),"Book has been added succesfully",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(),MyLibrary.class);
+                startActivity(intent);
 
             }
         });
