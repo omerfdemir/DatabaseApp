@@ -59,7 +59,21 @@ public class Database extends SQLiteOpenHelper {
                 new String[]{String.valueOf(book_id)});
         book_db.close();
     }
+    //Kitap Düzenleme Methodu
+    public void editBook(String book_name, String author_name,String total_page,String start_date, String finish_date, int book_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Update
+        ContentValues values = new ContentValues();
+        values.put(BOOK_NAME, book_name);
+        values.put(AUTHOR_NAME, author_name);
+        values.put(TOTAL_PAGE, total_page);
+        values.put(START_DATE, start_date);
+        values.put(FINISH_DATE, finish_date);
 
+        // updating row
+        db.update(TABLE_NAME, values, BOOK_ID + " = ?",
+                new String[] { String.valueOf(book_id) });
+    }
     //Kitap ID si kullanarak kitapları göstermek için kullanılır
     public HashMap<String, String> bookDetails(int book_id) {
         HashMap<String, String> book = new HashMap<String, String>();

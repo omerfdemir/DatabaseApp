@@ -68,7 +68,7 @@ public class BookDetails extends Activity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),EditBook.class);
-                intent.putExtra("book_id ",(int)book_id);
+                intent.putExtra("book_id",book_id);
                 startActivity(intent);
             }
 

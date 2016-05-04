@@ -38,6 +38,14 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light" >
         </activity>
+        <activity
+            android:name="com.example.omerf.databaseapp.EditBook"
+            android:label="@string/app_name"
+            android:parentActivityName=".BookDetails"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.Light" >
+        </activity>
+
     </application>
 
 </manifest>
