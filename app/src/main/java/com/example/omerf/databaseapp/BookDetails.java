@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,12 +20,15 @@ import java.util.HashMap;
 /**
  * Created by omerf on 28.04.2016.
  */
-public class BookDetails extends Activity{
+public class BookDetails extends AppCompatActivity{
     int book_id;
     Button button_change,button_delete;
     TextView tv_book_name,tv_author_name,tv_total_page,tv_start_date,tv_finish_date;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.book_details);
 
         //ActionBar actionBar = getActionBar();
@@ -102,6 +108,31 @@ public class BookDetails extends Activity{
             }
         });
     }
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actions,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case R.id.action_about_me:
+                AboutMee();
+                return true;
+            case R.id.action_contact:
+                Contactt();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
 
+        }
+    }
+    private void AboutMee() {
+        Intent intent = new Intent(BookDetails.this, AboutMe.class);
+        startActivity(intent);
+    }
+    private void Contactt(){
+        Intent intent = new Intent(BookDetails.this,Contact.class);
+        startActivity(intent);
+    }
 }
