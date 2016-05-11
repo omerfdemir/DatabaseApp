@@ -21,7 +21,7 @@ import java.util.HashMap;
  */
 public class EditBook extends AppCompatActivity {
     Button button_change;
-    EditText et_book_name, et_author_name, et_total_page, et_start_date, et_finish_date;
+    EditText et_book_name, et_author_name, et_total_page, et_start_date, et_finish_date,et_book_content;
     int book_id;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class EditBook extends AppCompatActivity {
         et_total_page = (EditText) findViewById(R.id.ch_et_total_page);
         et_start_date = (EditText) findViewById(R.id.ch_et_start_date);
         et_finish_date = (EditText) findViewById(R.id.ch_et_finish_date);
-
+        et_book_content = (EditText) findViewById(R.id.ch_et_book_content);
 
         final Intent intent = getIntent();
         book_id = intent.getIntExtra("book_id", 1);
@@ -48,21 +48,23 @@ public class EditBook extends AppCompatActivity {
         et_total_page.setText(map.get("total_page"));
         et_start_date.setText(map.get("start_date"));
         et_finish_date.setText(map.get("finish_date"));
+        et_book_content.setText(map.get("book_content"));
 
         button_change.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                String name, author, totalpage, startdate, finishdate;
+                String name, author, totalpage, startdate, finishdate, bookcontent;
                 name = et_book_name.getText().toString();
                 author = et_author_name.getText().toString();
                 totalpage = et_total_page.getText().toString();
                 startdate = et_start_date.getText().toString();
                 finishdate = et_finish_date.getText().toString();
-                if (name.matches("") || author.matches("") || totalpage.matches("") || startdate.matches("") || finishdate.matches("")) {
+                bookcontent = et_book_content.getText().toString();
+                if (name.matches("") || author.matches("") || totalpage.matches("") || startdate.matches("") || finishdate.matches("") || bookcontent.matches("")) {
                     Toast.makeText(getApplicationContext(), "Please fill all lines", Toast.LENGTH_LONG).show();
                 } else {
                     Database book_db = new Database(getApplicationContext());
-                    book_db.editBook(name, author, totalpage, startdate, finishdate, book_id);//g�nderdi�imiz id li kitab�n de�perlerini g�ncelledik.
+                    book_db.editBook(name, author, totalpage, startdate, finishdate,bookcontent, book_id);//g�nderdi�imiz id li kitab�n de�perlerini g�ncelledik.
                     book_db.close();
                     Toast.makeText(getApplicationContext(), "Book has been editted succesfully", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), MyLibrary.class);

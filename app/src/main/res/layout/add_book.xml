@@ -46,6 +46,12 @@
         android:layout_height="wrap_content"
         android:hint="Date I have finished"
 />
+    <EditText
+        android:id="@+id/et_book_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Book Content"
+        />
     <!-- Buttons-->
     <Button
         android:id="@+id/button_add"

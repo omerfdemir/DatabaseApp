@@ -33,6 +33,7 @@ public class AddBook extends AppCompatActivity {
         final EditText total_page = (EditText) findViewById(R.id.et_total_page);
         final EditText start_date = (EditText) findViewById(R.id.et_start_date);
         final EditText finish_date = (EditText) findViewById(R.id.et_finish_date);
+        final EditText book_content = (EditText) findViewById(R.id.et_book_content);
         //total_page.setInputType(InputType.TYPE_CLASS_NUMBER);
         Button button_add = (Button) findViewById(R.id.button_add);
         Button button_delete = (Button) findViewById(R.id.button_delete);
@@ -58,7 +59,8 @@ public class AddBook extends AppCompatActivity {
                 final String totalpage = total_page.getText().toString();
                 final String startdate = start_date.getText().toString();
                 final String finishdate = finish_date.getText().toString();
-                book_db.addBook(bookname, authorname, totalpage, startdate, finishdate);
+                final String bookcontent = book_content.getText().toString();
+                book_db.addBook(bookname, authorname, totalpage, startdate, finishdate,bookcontent);
                 Toast.makeText(getApplicationContext(),"Book has been added succesfully",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(),MyLibrary.class);
                 startActivity(intent);

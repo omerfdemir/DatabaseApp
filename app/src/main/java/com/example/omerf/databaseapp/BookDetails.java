@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class BookDetails extends AppCompatActivity{
     int book_id;
     Button button_change,button_delete;
-    TextView tv_book_name,tv_author_name,tv_total_page,tv_start_date,tv_finish_date;
+    TextView tv_book_name,tv_author_name,tv_total_page,tv_start_date,tv_finish_date,tv_book_content;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
@@ -46,6 +46,7 @@ public class BookDetails extends AppCompatActivity{
         TextView tv_total_page = (TextView) findViewById(R.id.tv_total_page);
         TextView tv_start_date = (TextView) findViewById(R.id.tv_start_date);
         TextView tv_finish_date = (TextView) findViewById(R.id.tv_finish_date);
+        TextView tv_book_content = (TextView) findViewById(R.id.tv_book_content);
 
 
         final Intent intent=getIntent();
@@ -60,6 +61,7 @@ public class BookDetails extends AppCompatActivity{
         tv_total_page.setText(map.get("total_page"));
         tv_start_date.setText(map.get("start_date"));
         tv_finish_date.setText(map.get("finish_date"));
+        tv_book_content.setText(map.get("book_content"));
 
         //Add butonunu sildim.
       /**  button_add.setOnClickListener(new View.OnClickListener() {

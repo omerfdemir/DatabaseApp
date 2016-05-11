@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class Database extends SQLiteOpenHelper {
     private static String TOTAL_PAGE = "total_page";
     private static String START_DATE = "start_date";
     private static String FINISH_DATE = "finish_date";
+    private static String BOOK_CONTENT = "book_content";
     public static Object addBook;
 
     public Database(Context context) {
@@ -36,16 +38,17 @@ public class Database extends SQLiteOpenHelper {
 
     //CREATE TABLE
 
-
     //Kitap Ekleme Methodu
-    public void addBook(String bookname, String authorname, String totalpage, String startdate, String finishdate) {
+    public void addBook(String bookname, String authorname, String totalpage, String startdate, String finishdate, String bookcontent) {
         SQLiteDatabase book_db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(BOOK_NAME, bookname);
         values.put(AUTHOR_NAME, authorname);
         values.put(TOTAL_PAGE, totalpage);
         values.put(START_DATE, startdate);
         values.put(FINISH_DATE, finishdate);
+        values.put(BOOK_CONTENT,bookcontent);
         //Verileri insert ediyoruz
         book_db.insert(TABLE_NAME,null,values);
         //DB'yi kapatıyoruz
@@ -60,7 +63,8 @@ public class Database extends SQLiteOpenHelper {
         book_db.close();
     }
     //Kitap Düzenleme Methodu
-    public void editBook(String book_name, String author_name,String total_page,String start_date, String finish_date, int book_id) {
+    public void editBook(String book_name, String author_name,String total_page,String start_date, String finish_date,String bookcontent,
+                         int book_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         //Update
         ContentValues values = new ContentValues();
@@ -69,6 +73,7 @@ public class Database extends SQLiteOpenHelper {
         values.put(TOTAL_PAGE, total_page);
         values.put(START_DATE, start_date);
         values.put(FINISH_DATE, finish_date);
+        values.put(BOOK_CONTENT, bookcontent);
 
         // updating row
         db.update(TABLE_NAME, values, BOOK_ID + " = ?",
@@ -89,7 +94,8 @@ public class Database extends SQLiteOpenHelper {
             book.put(TOTAL_PAGE, cursor.getString(3));
             book.put(START_DATE, cursor.getString(4));
             book.put(FINISH_DATE, cursor.getString(5));
-            Log.e("String",cursor.getString(2));
+            book.put(BOOK_CONTENT,cursor.getString(6));
+            Log.e("String",cursor.getString(6));
         }
             cursor.close();
 
@@ -127,12 +133,13 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + "(" +
-                BOOK_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                BOOK_NAME + "TEXT ," +
-                AUTHOR_NAME + "TEXT," +
-                TOTAL_PAGE + "TEXT," +
-                START_DATE + "DATE," +
-                FINISH_DATE + "DATE" + ")";
+                BOOK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                BOOK_NAME + " TEXT ," +
+                AUTHOR_NAME + " TEXT," +
+                TOTAL_PAGE + " TEXT," +
+                START_DATE + " DATE," +
+                FINISH_DATE + " DATE," +
+                BOOK_CONTENT + " TEXT" + ")";
         db.execSQL(CREATE_TABLE);
     }
 

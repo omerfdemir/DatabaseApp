@@ -2,6 +2,7 @@ package com.example.omerf.databaseapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -32,9 +33,11 @@ public class MyLibrary  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.my_library);
-        Button b1 = (Button) findViewById(R.id.add_new_book);
-        b1.setOnClickListener(new View.OnClickListener() {
+        Button b2 = (Button) findViewById(R.id.add_new_book);
+        b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyLibrary.this, AddBook.class);
@@ -83,7 +86,7 @@ public class MyLibrary  extends AppCompatActivity {
                 //Listedeki her hangibir yere t�kland�g�nda t�klanan sat�r�n s�ras�n� al�yoruz.
                 //Bu s�ra id arraydeki s�rayla ayn� oldugundan t�klanan sat�rda bulunan kitap�n id sini al�yor ve kitap detaya g�nderiyoruz.
                 Intent intent = new Intent(getApplicationContext(), BookDetails.class);
-                intent.putExtra("book_id", (int) book_ids[arg2]);
+                intent.putExtra("book_id", book_ids[arg2]);
                 startActivity(intent);
 
             }
